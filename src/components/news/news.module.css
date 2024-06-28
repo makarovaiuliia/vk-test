@@ -8,7 +8,7 @@
 
 .postsList {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
@@ -22,9 +22,8 @@
     color: #fff;
 }
 
-@media (width < 900px) {
+@media (width < 1000px) {
     .postsList {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
+        grid-template-columns: repeat(1, 1fr);
     }
 }

@@ -1,4 +1,4 @@
-import { Section, TStory } from "@/types/types";
+import { Section, TComments, TStory } from "@/types/types";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -37,4 +37,22 @@ export const getNewsByIdApi = async (id: number): Promise<TStory> => {
         console.error("Error fetching news:", error);
         throw error;
     }
+};
+
+const fetchCommentWithKids = async (id: number): Promise<TComments> => {
+    const comment = await getNewsByIdApi(id);
+
+    if (comment.kids && comment.kids.length > 0) {
+        const kidsComments = await Promise.all(
+            comment.kids.map(fetchCommentWithKids)
+        );
+        return { ...comment, comments: kidsComments };
+    }
+
+    return { ...comment, comments: [] };
+};
+
+export const fetchComments = async (ids: number[]): Promise<TComments[]> => {
+    const comments = await Promise.all(ids.map(fetchCommentWithKids));
+    return comments;
 };
