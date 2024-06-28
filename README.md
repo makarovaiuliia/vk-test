@@ -1,13 +1,13 @@
 # Test Project for VK - News Portal
 
-[Here you can surf deploy]([https://test-antipoff.netlify.app/](https://main--effortless-gumdrop-f025fc.netlify.app/))
+[Here you can surf deploy](https://vk-test-news-portal.netlify.app/)
 
 ## Technology Stack
 
 - **Frontend**: React + TypeScript
 - **State management**: Redux Toolkit
 - **Bundling**: Vite
-- **Backend**: [Hacker News]([https://reqres.in/](https://news.ycombinator.com/item?id=32540883))
+- **Backend**: [Hacker News](https://news.ycombinator.com/item?id=32540883)
 
 ## Available Scripts
 
@@ -39,6 +39,10 @@ To set up and run Kickflip locally, follow these steps:
    ```bash
    npm dev
    ```
+
+## Technology Stack
+
+For improving: i did not have time for error handlig and it's really sad. That would be the first thing I would add to this projects
 
 ## Contributors
 
