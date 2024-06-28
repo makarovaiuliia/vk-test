@@ -1,4 +1,4 @@
-import { TStory } from "@/types/types";
+import { Section, TStory } from "@/types/types";
 
 const URL = import.meta.env.VITE_URL;
 
@@ -11,7 +11,7 @@ const checkResponse = async <T>(res: Response): Promise<T> => {
     }
 };
 
-export const getNewsApi = async (sort: string): Promise<number[]> => {
+export const getNewsApi = async (sort: Section): Promise<number[]> => {
     try {
         const response = await fetch(`${URL}/${sort}.json?print=pretty`, {
             headers: {

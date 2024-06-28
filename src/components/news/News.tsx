@@ -1,25 +1,60 @@
 import { useDispatch, useSelector } from "@/lib/store";
 import styles from "./news.module.css";
-import { getNewsPosts, incrementPage } from "@/lib/newsSlice";
+import { getNewsPosts, incrementPage, setSection } from "@/lib/newsSlice";
+import Post from "../post/Post";
+import Button from "../button/Button";
+import { Section } from "@/types/types";
+import { useState } from "react";
 
 function News(): JSX.Element {
     const dispatch = useDispatch();
     const newsPosts = useSelector(getNewsPosts);
-    console.log(newsPosts)
+    const [activeButton, setActiveButton] = useState<Section>("topstories");
 
     const handleLoadMore = () => {
         dispatch(incrementPage());
     };
 
+    const handleButtonClick = (section: Section) => {
+        setActiveButton(section);
+        dispatch(setSection(section));
+    };
+
     return (
-        <>
-            <ul>
+        <section className={styles.newsSection}>
+            <h2>Latest News</h2>
+            <div className={styles.buttonContainer}>
+                <Button
+                    text="Top Stories"
+                    onClick={() => handleButtonClick("topstories")}
+                    className={
+                        activeButton === "topstories" ? styles.activeButton : ""
+                    }
+                />
+                <Button
+                    text="News Stories"
+                    onClick={() => handleButtonClick("newstories")}
+                    className={
+                        activeButton === "newstories" ? styles.activeButton : ""
+                    }
+                />
+                <Button
+                    text="Best Stories"
+                    onClick={() => handleButtonClick("beststories")}
+                    className={
+                        activeButton === "beststories"
+                            ? styles.activeButton
+                            : ""
+                    }
+                />
+            </div>
+            <ul className={styles.postsList}>
                 {newsPosts.map((post) => (
-                    <li key={post.id}>{post.title}</li>
+                    <Post postData={post} />
                 ))}
             </ul>
-            <button onClick={handleLoadMore}>Load more</button>
-        </>
+            <Button onClick={handleLoadMore} text="Load more" />
+        </section>
     );
 }
 

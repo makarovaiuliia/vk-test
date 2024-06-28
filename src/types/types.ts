@@ -11,3 +11,5 @@ export type TStory = {
 };
 
 type NewsType = "story" | "comment" | "job" | "poll" | "pollopt";
+
+export type Section = "topstories" | "newstories" | "beststories";

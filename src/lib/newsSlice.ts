@@ -1,15 +1,18 @@
-import { TStory } from "@/types/types";
+import { Section, TStory } from "@/types/types";
 import { getNewsApi, getNewsByIdApi } from "@/utils/test-api";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 // import type { RootState } from "./store";
 
 /* eslint-disable no-param-reassign */
 
-export const getNews = createAsyncThunk("newsAll/get", async (sort: string) => {
-    const response = await getNewsApi(sort);
-    return response;
-});
+export const getNews = createAsyncThunk(
+    "newsAll/get",
+    async (sort: Section) => {
+        const response = await getNewsApi(sort);
+        return response;
+    }
+);
 
 export const getNewsByIds = createAsyncThunk(
     "news/get",
@@ -28,6 +31,7 @@ interface InitialState {
     newsPosts: TStory[];
     page: number;
     status: string;
+    section: Section;
 }
 
 const initialState: InitialState = {
@@ -35,18 +39,21 @@ const initialState: InitialState = {
     newsPosts: [],
     page: 1,
     status: "",
+    section: "topstories",
 };
 
 const newsSlice = createSlice({
     name: "news",
     initialState,
     reducers: {
+        setSection(state, action: PayloadAction<Section>) {
+            state.section = action.payload;
+            state.page = 1;
+            state.newsList = [];
+            state.newsPosts = [];
+        },
         incrementPage(state) {
             state.page += 1;
-        },
-        resetNews(state) {
-            state.newsList = [];
-            state.page = 1;
         },
     },
     extraReducers: (builder) => {
@@ -67,8 +74,9 @@ const newsSlice = createSlice({
 export const getNewsPosts = (state: RootState) => state.news.newsPosts;
 export const getNewsIds = (state: RootState) => state.news.newsList;
 export const getPage = (state: RootState) => state.news.page;
+export const getSection = (state: RootState) => state.news.section;
 
-export const {incrementPage} = newsSlice.actions;
+export const { incrementPage, setSection } = newsSlice.actions;
 
 export default newsSlice.reducer;
 
