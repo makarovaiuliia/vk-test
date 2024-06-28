@@ -13,7 +13,11 @@ const Comment = ({ comment }: CommentProps): JSX.Element => {
     return (
         <div className={styles.comment}>
             <div className={styles.commentContent}>
-                <p>{comment.by}</p>
+                <p>
+                    {comment.by}
+                    {" Score:"}
+                    {comment.score ? comment.score : "0"}
+                </p>
                 <p>{comment.text}</p>
                 {comment.comments.length > 0 && (
                     <Button
