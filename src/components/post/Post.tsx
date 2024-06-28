@@ -3,11 +3,13 @@ import { TComments, TStory } from "@/types/types";
 import placeholder from "/placeholder.svg";
 import styles from "./post.module.css";
 import Button from "../button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CommentSection from "../commentSection/CommentSection";
 import { fetchComments } from "@/utils/test-api";
 import Modal from "../modal/Modal";
 import Loader from "../loader/Loader";
+import HeartIcon from "../icons/Heart";
+import { addToFavorites, isFavorite, removeFromFavorites } from "@/utils/utils";
 
 interface PostProps {
     postData: TStory;
@@ -16,6 +18,11 @@ interface PostProps {
 function Post({ postData }: PostProps): JSX.Element {
     const [open, setIsOpen] = useState<boolean>(false);
     const [comments, setComments] = useState<TComments[]>([]);
+    const [favorite, setFavorite] = useState<boolean>(false);
+
+    useEffect(() => {
+        setFavorite(isFavorite(postData.id));
+    }, [postData.id]);
 
     const handleOpenComments = async () => {
         if (!open) {
@@ -28,6 +35,15 @@ function Post({ postData }: PostProps): JSX.Element {
         } else {
             setIsOpen(false);
         }
+    };
+
+    const toggleFavorite = () => {
+        if (favorite) {
+            removeFromFavorites(postData.id);
+        } else {
+            addToFavorites(postData.id);
+        }
+        setFavorite(!favorite);
     };
 
     return (
@@ -47,6 +63,7 @@ function Post({ postData }: PostProps): JSX.Element {
                 <div className={styles.postInfo}>
                     <p>{postData.by}</p>
                     <p>{postData.score}</p>
+                    <HeartIcon filled={favorite} onClick={toggleFavorite} />
                 </div>
             </div>
             <Button
