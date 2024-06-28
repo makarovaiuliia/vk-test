@@ -1,15 +1,18 @@
 import { useDispatch, useSelector } from "@/lib/store";
 import styles from "./news.module.css";
 import {
+    getNews,
     getNewsPosts,
+    getSection,
     getStatus,
     incrementPage,
+    removeNews,
     setSection,
 } from "@/lib/newsSlice";
 import Post from "../post/Post";
 import Button from "../button/Button";
 import { Section } from "@/types/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getNewsByIds, getNewsIds, getPage } from "@/lib/newsSlice";
 import Loader from "../loader/Loader";
 
@@ -19,8 +22,10 @@ function News(): JSX.Element {
     const newsIds = useSelector(getNewsIds);
     const page = useSelector(getPage);
     const status = useSelector(getStatus);
+    const section = useSelector(getSection);
 
     const [activeButton, setActiveButton] = useState<Section>("topstories");
+    const intervalId = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         const fetchNewsDetails = async () => {
@@ -37,6 +42,32 @@ function News(): JSX.Element {
         fetchNewsDetails();
     }, [page, newsIds, dispatch]);
 
+    useEffect(() => {
+        intervalId.current = setInterval(() => {
+            dispatch(removeNews());
+            dispatch(getNews(activeButton));
+        }, 30000);
+
+        return () => {
+            if (intervalId.current) {
+                clearInterval(intervalId.current);
+            }
+        };
+    }, []);
+
+    const fetchLatestNews = () => {
+        dispatch(removeNews());
+        dispatch(getNews(section));
+
+        if (intervalId.current) {
+            clearInterval(intervalId.current);
+        }
+
+        intervalId.current = setInterval(() => {
+            dispatch(getNews(activeButton));
+        }, 30000);
+    };
+
     const handleLoadMore = () => {
         dispatch(incrementPage());
     };
@@ -50,6 +81,7 @@ function News(): JSX.Element {
         <section className={styles.newsSection}>
             <h2>Latest News</h2>
             <div className={styles.buttonContainer}>
+                <Button onClick={fetchLatestNews} text="Fetch Latest News" />
                 <Button
                     text="Top Stories"
                     onClick={() => handleButtonClick("topstories")}
@@ -77,7 +109,7 @@ function News(): JSX.Element {
 
             <ul className={styles.postsList}>
                 {newsPosts.map((post) => (
-                    <Post postData={post} />
+                    <Post postData={post} key={post.id} />
                 ))}
             </ul>
 

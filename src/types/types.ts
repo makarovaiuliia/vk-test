@@ -12,7 +12,7 @@ export type TStory = {
 };
 
 export type TComments = TStory & {
-    comments: TStory[];
+    comments: TComments[];
 };
 
 type NewsType = "story" | "comment" | "job" | "poll" | "pollopt";

@@ -1,6 +1,7 @@
 import { TComments } from "@/types/types";
 import styles from "./comment.module.css";
 import { useState } from "react";
+import Button from "../button/Button";
 
 interface CommentProps {
     comment: TComments;
@@ -15,9 +16,10 @@ const Comment = ({ comment }: CommentProps): JSX.Element => {
                 <p>{comment.by}</p>
                 <p>{comment.text}</p>
                 {comment.comments.length > 0 && (
-                    <button onClick={() => setShowReplies(!showReplies)}>
-                        {showReplies ? "Hide Replies" : "Show Replies"}
-                    </button>
+                    <Button
+                        text={showReplies ? "Hide Replies" : "Show Replies"}
+                        onClick={() => setShowReplies(!showReplies)}
+                    />
                 )}
             </div>
             {showReplies && comment.kids && (
