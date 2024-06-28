@@ -7,6 +7,13 @@ interface CommentProps {
     comment: TComments;
 }
 
+/**
+ * Comment component that displays a single comment with the option to show/hide replies.
+ *
+ * @param {CommentProps} props - The props for the Comment component.
+ * @param {TComments} props.comment - The comment data to display.
+ * @returns {JSX.Element} The rendered Comment component.
+ */
 const Comment = ({ comment }: CommentProps): JSX.Element => {
     const [showReplies, setShowReplies] = useState(false);
 

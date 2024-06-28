@@ -6,6 +6,13 @@ interface CommentSectionProps {
     comments: TComments[];
 }
 
+/**
+ * CommentSection component that displays a list of comments.
+ *
+ * @param {CommentSectionProps} props - The props for the CommentSection component.
+ * @param {TComments[]} props.comments - An array of comments to display.
+ * @returns {JSX.Element} The rendered CommentSection component.
+ */
 function CommentSection({ comments }: CommentSectionProps): JSX.Element {
     return (
         <div className={styles.commentSection}>

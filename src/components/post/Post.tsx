@@ -15,6 +15,12 @@ interface PostProps {
     postData: TStory;
 }
 
+/**
+ * Post component to display a news post with options to show comments and mark as favorite.
+ *
+ * @param {PostProps} props - The props for the Post component.
+ * @returns {JSX.Element} The rendered Post component.
+ */
 function Post({ postData }: PostProps): JSX.Element {
     const [open, setIsOpen] = useState<boolean>(false);
     const [comments, setComments] = useState<TComments[]>([]);

@@ -16,6 +16,11 @@ import { useEffect, useRef, useState } from "react";
 import { getNewsByIds, getNewsIds, getPage } from "@/lib/newsSlice";
 import Loader from "../loader/Loader";
 
+/**
+ * News component to display the latest news articles and handle fetching, pagination, and section selection.
+ *
+ * @returns {JSX.Element} The rendered News component.
+ */
 function News(): JSX.Element {
     const dispatch = useDispatch();
     const newsPosts = useSelector(getNewsPosts);

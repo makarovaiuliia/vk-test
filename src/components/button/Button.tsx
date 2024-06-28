@@ -6,6 +6,17 @@ interface ButtonProps {
     className?: string;
     disabled?: boolean;
 }
+
+/**
+ * Button component that displays a styled button with optional click handler, class, and disabled state.
+ *
+ * @param {ButtonProps} props - The props for the Button component.
+ * @param {() => void} [props.onClick] - Optional click handler function.
+ * @param {string} props.text - The text to display on the button.
+ * @param {string} [props.className] - Optional additional class name for the button.
+ * @param {boolean} [props.disabled] - Optional disabled state for the button.
+ * @returns {JSX.Element} The rendered Button component.
+ */
 function Button({
     onClick,
     text,

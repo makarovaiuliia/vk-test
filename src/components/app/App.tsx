@@ -5,6 +5,11 @@ import { useDispatch, useSelector } from "@/lib/store";
 import { useEffect } from "react";
 import { getNews, getSection } from "@/lib/newsSlice";
 
+/**
+ * App component that sets up the routing for the application and fetches initial news data.
+ *
+ * @returns {JSX.Element} The rendered App component.
+ */
 function App() {
     const dispatch = useDispatch();
     const section = useSelector(getSection);

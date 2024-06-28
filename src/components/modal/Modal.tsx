@@ -8,6 +8,12 @@ interface ModalProps {
     children: React.ReactNode;
 }
 
+/**
+ * Modal component that displays its children in a modal overlay.
+ *
+ * @param {ModalProps} props - The props for the Modal component.
+ * @returns {JSX.Element | null} The rendered Modal component, or null if not showing.
+ */
 const Modal = ({ show, onClose, children }: ModalProps) => {
     if (!show) return null;
 

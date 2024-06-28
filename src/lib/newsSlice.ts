@@ -6,6 +6,12 @@ import { RootState } from "./store";
 
 /* eslint-disable no-param-reassign */
 
+/**
+ * Fetches news IDs based on the given section.
+ *
+ * @param {Section} sort - The section to fetch news from (e.g., "topstories", "newstories").
+ * @returns {Promise<number[]>} - A promise that resolves to an array of news IDs.
+ */
 export const getNews = createAsyncThunk(
     "newsAll/get",
     async (sort: Section) => {
@@ -14,6 +20,12 @@ export const getNews = createAsyncThunk(
     }
 );
 
+/**
+ * Fetches news and comments and etc details by IDs.
+ *
+ * @param {number[]} ids - An array of news IDs to fetch details for.
+ * @returns {Promise<TStory[]>} - A promise that resolves to an array of news details.
+ */
 export const getNewsByIds = createAsyncThunk(
     "news/get",
     async (ids: number[], { rejectWithValue }) => {
@@ -42,10 +54,19 @@ const initialState: InitialState = {
     section: "topstories",
 };
 
+/**
+ * Slice for managing news state.
+ */
 const newsSlice = createSlice({
     name: "news",
     initialState,
     reducers: {
+        /**
+         * Sets the news section and resets the state.
+         *
+         * @param {InitialState} state - The current state.
+         * @param {PayloadAction<Section>} action - The action payload containing the new section.
+         */
         setSection(state, action: PayloadAction<Section>) {
             state.status = "loading";
             state.section = action.payload;
@@ -53,9 +74,19 @@ const newsSlice = createSlice({
             state.newsList = [];
             state.newsPosts = [];
         },
+        /**
+         * Increments the current page number.
+         *
+         * @param {InitialState} state - The current state.
+         */
         incrementPage(state) {
             state.page += 1;
         },
+        /**
+         * Removes all news and resets the state.
+         *
+         * @param {InitialState} state - The current state.
+         */
         removeNews(state) {
             state.page = 1;
             state.newsList = [];
@@ -77,6 +108,9 @@ const newsSlice = createSlice({
     },
 });
 
+/**
+ * Selectors to get various parts of the news state.
+ */
 export const getNewsPosts = (state: RootState) => state.news.newsPosts;
 export const getNewsIds = (state: RootState) => state.news.newsList;
 export const getPage = (state: RootState) => state.news.page;

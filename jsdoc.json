@@ -1,0 +1,27 @@
+{
+    "source": {
+        "include": ["src"],
+        "includePattern": ".+\\.tsx?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": ["plugins/markdown", "node_modules/jsdoc-babel"],
+    "opts": {
+        "recurse": true,
+        "destination": "./docs",
+        "encoding": "utf8"
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false,
+        "default": {
+            "outputSourceFiles": true
+        }
+    },
+    "babel": {
+        "extensions": ["ts", "tsx"],
+        "presets": ["@babel/preset-typescript", "@babel/preset-react"]
+    },
+    "markdown": {
+        "idInHeadings": true
+    }
+}

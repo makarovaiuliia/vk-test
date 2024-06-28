@@ -1,5 +1,10 @@
 import styles from "./header.module.css";
 
+/**
+ * Header component that displays the title of the news portal.
+ *
+ * @returns {JSX.Element} The rendered Header component.
+ */
 function Header(): JSX.Element {
     return (
         <header className={styles.header}>
