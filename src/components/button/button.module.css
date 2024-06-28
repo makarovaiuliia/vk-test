@@ -3,4 +3,10 @@
     border: 1px solid #000;
     border-radius: 8px;
     width: fit-content;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #000;
+    color: #fff;
 }

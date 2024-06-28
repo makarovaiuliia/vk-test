@@ -1,7 +1,7 @@
-:root {
+#root {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    align-items: center;
     width: 100%;
     min-height: 100%;
 }
@@ -28,7 +28,15 @@ ul {
 
 a {
     text-decoration: none;
-    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    transition: 0.3s;
+}
+
+a:hover {
+    text-decoration-color: #000;
 }
 
 button {

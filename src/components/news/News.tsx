@@ -1,17 +1,25 @@
 import { useDispatch, useSelector } from "@/lib/store";
 import styles from "./news.module.css";
-import { getNewsPosts, incrementPage, setSection } from "@/lib/newsSlice";
+import {
+    getNewsPosts,
+    getStatus,
+    incrementPage,
+    setSection,
+} from "@/lib/newsSlice";
 import Post from "../post/Post";
 import Button from "../button/Button";
 import { Section } from "@/types/types";
 import { useEffect, useState } from "react";
 import { getNewsByIds, getNewsIds, getPage } from "@/lib/newsSlice";
+import Loader from "../loader/Loader";
 
 function News(): JSX.Element {
     const dispatch = useDispatch();
     const newsPosts = useSelector(getNewsPosts);
     const newsIds = useSelector(getNewsIds);
     const page = useSelector(getPage);
+    const status = useSelector(getStatus);
+
     const [activeButton, setActiveButton] = useState<Section>("topstories");
 
     useEffect(() => {
@@ -66,12 +74,18 @@ function News(): JSX.Element {
                     }
                 />
             </div>
+
             <ul className={styles.postsList}>
                 {newsPosts.map((post) => (
                     <Post postData={post} />
                 ))}
             </ul>
-            <Button onClick={handleLoadMore} text="Load more" />
+
+            {status === "loading" ? (
+                <Loader />
+            ) : (
+                <Button onClick={handleLoadMore} text="Load more" />
+            )}
         </section>
     );
 }

@@ -3,6 +3,7 @@
     display: grid;
     gap: 24px;
     justify-items: center;
+    align-items: start;
 }
 
 .postsList {

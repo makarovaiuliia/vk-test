@@ -47,6 +47,7 @@ const newsSlice = createSlice({
     initialState,
     reducers: {
         setSection(state, action: PayloadAction<Section>) {
+            state.status = "loading";
             state.section = action.payload;
             state.page = 1;
             state.newsList = [];
@@ -61,11 +62,11 @@ const newsSlice = createSlice({
             .addCase(getNews.fulfilled, (state, action) => {
                 state.newsList = action.payload;
             })
-            .addCase(getNews.pending, (state) => {
+            .addCase(getNewsByIds.pending, (state) => {
                 state.status = "loading";
             })
             .addCase(getNewsByIds.fulfilled, (state, action) => {
-                state.status = "succeeded";
+                state.status = "ok";
                 state.newsPosts = [...state.newsPosts, ...action.payload];
             });
     },
@@ -75,6 +76,7 @@ export const getNewsPosts = (state: RootState) => state.news.newsPosts;
 export const getNewsIds = (state: RootState) => state.news.newsList;
 export const getPage = (state: RootState) => state.news.page;
 export const getSection = (state: RootState) => state.news.section;
+export const getStatus = (state: RootState) => state.news.status;
 
 export const { incrementPage, setSection } = newsSlice.actions;
 
