@@ -4,12 +4,30 @@ import { getNewsPosts, incrementPage, setSection } from "@/lib/newsSlice";
 import Post from "../post/Post";
 import Button from "../button/Button";
 import { Section } from "@/types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getNewsByIds, getNewsIds, getPage } from "@/lib/newsSlice";
 
 function News(): JSX.Element {
     const dispatch = useDispatch();
     const newsPosts = useSelector(getNewsPosts);
+    const newsIds = useSelector(getNewsIds);
+    const page = useSelector(getPage);
     const [activeButton, setActiveButton] = useState<Section>("topstories");
+
+    useEffect(() => {
+        const fetchNewsDetails = async () => {
+            if (newsIds.length) {
+                const startIndex = (page - 1) * 15;
+                const endIndex = page * 15;
+                const idsToFetch = newsIds.slice(startIndex, endIndex);
+                if (idsToFetch.length) {
+                    await dispatch(getNewsByIds(idsToFetch));
+                }
+            }
+        };
+
+        fetchNewsDetails();
+    }, [page, newsIds, dispatch]);
 
     const handleLoadMore = () => {
         dispatch(incrementPage());
