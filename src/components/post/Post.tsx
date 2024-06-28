@@ -16,13 +16,16 @@ function Post({ postData }: PostProps): JSX.Element {
                     alt="placeholder"
                     className={styles.postImage}
                 />
-
-                <a className={styles.postTitle} href={postData.url}>
-                    {postData.title}
+                <a className={styles.postLink} href={postData.url}>
+                    Link to the news
                 </a>
+                <h1 className={styles.postTitle}>{postData.title}</h1>
             </div>
 
-            <p className={styles.postAuthor}>{postData.by}</p>
+            <div className={styles.postInfo}>
+                <p>{postData.by}</p>
+                <p>{postData.score}</p>
+            </div>
         </div>
     );
 }

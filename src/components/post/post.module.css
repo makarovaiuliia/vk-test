@@ -10,8 +10,11 @@
     font-size: 24px;
     font-family: "Playfair Display", serif;
     color: #000;
+}
+
+.postLink {
+    color: #000;
     cursor: pointer;
-    text-transform: capitalize;
 }
 
 .postImage {
@@ -24,7 +27,19 @@
     border-radius: 8px;
 }
 
-.postAuthor {
+.postInfo {
     font-size: 12px;
     color: #00000051;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (width < 900px) {
+    .postTitle {
+        font-size: 18px;
+    }
+
+    .postLink {
+        font-size: 12px;
+    }
 }

@@ -21,3 +21,10 @@
     background-color: #000;
     color: #fff;
 }
+
+@media (width < 900px) {
+    .postsList {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
