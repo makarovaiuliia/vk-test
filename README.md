@@ -15,7 +15,7 @@ In the project directory, you can run several scripts:
 
 #### `npm run dev`
 
-Runs the app in the development mode using Vite. Open [http://localhost:4001](http://localhost:4001) to view it in your browser. The page will reload if you make edits.
+Runs the app in the development mode using Vite. Open [http://localhost:3005](http://localhost:3005) to view it in your browser. The page will reload if you make edits.
 
 #### `npm run build`
 
@@ -40,9 +40,9 @@ To set up and run Kickflip locally, follow these steps:
    npm dev
    ```
 
-## Technology Stack
+## Areas for improvement
 
-For improving: i did not have time for error handlig and it's really sad. That would be the first thing I would add to this projects
+I did not have time for error handlig and it's really sad. That would be the first thing I would add to this projects
 
 ## Contributors
 
