@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
+# Test Project for VK - News Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Here you can surf deploy]([https://test-antipoff.netlify.app/](https://main--effortless-gumdrop-f025fc.netlify.app/))
 
-Currently, two official plugins are available:
+## Technology Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Frontend**: React + TypeScript
+- **State management**: Redux Toolkit
+- **Bundling**: Vite
+- **Backend**: [Hacker News]([https://reqres.in/](https://news.ycombinator.com/item?id=32540883))
 
-## Expanding the ESLint configuration
+## Available Scripts
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+In the project directory, you can run several scripts:
 
-- Configure the top-level `parserOptions` property like this:
+#### `npm run dev`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+Runs the app in the development mode using Vite. Open [http://localhost:4001](http://localhost:4001) to view it in your browser. The page will reload if you make edits.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### `npm run build`
+
+Builds the app for production to the `dist` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+#### `npm run lint`
+
+Lints the source files using ESLint for files with extensions .ts, .tsx, .js, and .jsx, reporting any unused disable directives.
+
+## Setting Up and Running Locally
+
+To set up and run Kickflip locally, follow these steps:
+
+1. **Clone the repository:**
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the development server:**
+   ```bash
+   npm dev
+   ```
+
+## Contributors
+
+| Name            | Role      | GitHub                                                |
+| --------------- | --------- | ----------------------------------------------------- |
+| Iuliia Makarova | Developer | [makarovaiuliia](https://github.com/makarovaiuliia)   |
